@@ -1,8 +1,8 @@
 # Indian IPTV App
 
-<img src="[play-button.png](https://github.com/samyak2403/IPTVmine/blob/master/app/src/main/res/drawable/ic_tv.png)" width="100px"/>
+<img src="https://github.com/samyak2403/IPTVmine/blob/master/app/src/main/res/drawable/ic_tv.png" width="100px"/>
 
-![pv](https://pageview.vercel.app/?github_user=Indian-IPTV-App)
+![pv](https://pageview.vercel.app/?github_user=IPTVmine)
 
 ## 📲 Download the APK:
 <a href="https://github.com/samyak2403/IPTVmine/raw/master/app/release/app-release.apk">
