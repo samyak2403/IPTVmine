@@ -4,14 +4,15 @@
 
 ![pv](https://pageview.vercel.app/?github_user=IPTVmine)
 
-# Indian IPTV Pro App
+# Indian IPTVmine App
 <a href="https://github.com/samyak2403/IPTVmine/raw/master/app/release/app-release.apk">
-  <img src="https://github.com/user-attachments/assets/a0c5dcca-d0dc-477b-b864-98c13e12d15d" alt="Download Love Calculator APK" style="width: 100px; height: auto;">
+  <img src="https://github.com/user-attachments/assets/a0c5dcca-d0dc-477b-b864-98c13e12d15d" alt="Download Love Calculator APK" style="width: 300px; height: auto;">
 </a>
 
+# Indian IPTV Pro App
 ## 📲 Download the APK:
 <a href="https://github.com/samyak2403/Indian-IPTV-App/raw/master/app/release/app-release.apk">
-  <img src="https://github.com/samyak2403/Indian-IPTV-App/blob/master/play-button.png" alt="Download Love Calculator APK" style="width: 300px; height: auto;">
+  <img src="https://github.com/samyak2403/Indian-IPTV-App/blob/master/play-button.png" alt="Download Love Calculator APK" style="width: 100px; height: auto;">
 </a>
 
 ## Overview
