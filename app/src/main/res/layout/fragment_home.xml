@@ -14,9 +14,10 @@
     <EditText
         android:id="@+id/searchEditText"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:hint="Search channels..."
-        android:drawableStart="@android:drawable/ic_menu_search"
+        android:background="@drawable/edittext_background"
+        android:drawableStart="@drawable/ic_search"
         android:inputType="text" />
 
     <ProgressBar

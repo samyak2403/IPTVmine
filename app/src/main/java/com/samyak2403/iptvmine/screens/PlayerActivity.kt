@@ -1,13 +1,14 @@
 /**
  * Created by Samyak Kamble on 8/14/24, 11:38 AM
  * Copyright (c) 2024. All rights reserved.
- * Last modified 8/14/24, 11:38 AM
+ * Last modified 8/19/24, 06:57 AM
  */
 
 package com.samyak2403.iptvmine.screens
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
@@ -22,7 +23,7 @@ import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.ui.PlayerView
 import com.google.android.exoplayer2.util.Util
 import com.samyak2403.iptvmine.R
-import com.samyak2403.iptvmine.model.Channel  // Ensure this is the correct import
+import com.samyak2403.iptvmine.model.Channel
 
 class PlayerActivity : AppCompatActivity() {
 
@@ -34,9 +35,9 @@ class PlayerActivity : AppCompatActivity() {
     private var isPlayerReady = false
 
     companion object {
-        fun start(context: Context, channel: Channel) {  // Ensure this uses the correct Channel class
+        fun start(context: Context, channel: Channel) {
             val intent = Intent(context, PlayerActivity::class.java).apply {
-                putExtra("channel", channel)  // Ensure Channel implements Parcelable
+                putExtra("channel", channel)
             }
             context.startActivity(intent)
         }
@@ -49,7 +50,8 @@ class PlayerActivity : AppCompatActivity() {
         // Keep the screen on while playing video
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
-        channel = intent.getParcelableExtra("channel") ?: return
+        // Retrieve channel from savedInstanceState or intent
+        channel = savedInstanceState?.getParcelable("channel") ?: intent.getParcelableExtra("channel") ?: return
 
         playerView = findViewById(R.id.playerView)
         progressBar = findViewById(R.id.progressBar)
@@ -90,6 +92,25 @@ class PlayerActivity : AppCompatActivity() {
         }
     }
 
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            // Handle landscape changes, if any
+            window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
+            supportActionBar?.hide()
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            // Handle portrait changes, if any
+            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
+            supportActionBar?.show()
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelable("channel", channel)
+    }
+
     override fun onStart() {
         super.onStart()
         if (Util.SDK_INT > 23) {
@@ -125,6 +146,7 @@ class PlayerActivity : AppCompatActivity() {
         player.release()
     }
 }
+
 
 //
 //package com.samyak2403.iptv.screens
