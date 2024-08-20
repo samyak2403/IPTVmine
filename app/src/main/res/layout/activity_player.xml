@@ -14,7 +14,10 @@
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
         android:visibility="visible"
-        app:use_controller="false"
+        android:background="@android:color/background_dark"
+        app:controller_layout_id="@layout/custom_controller"
+        app:player_layout_id="@layout/exo_player_view"
+        app:use_controller="true"
         app:resize_mode="fit" />
 
     <ProgressBar

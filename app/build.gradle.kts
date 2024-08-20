@@ -9,17 +9,18 @@ android {
 
     defaultConfig {
         applicationId = "com.samyak2403.iptvmine"
-        minSdk = 24
+        minSdk = 21
         targetSdk = 34
-        versionCode = 2
-        versionName = "1.0.1"
+        versionCode = 3
+        versionName = "1.0.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -32,6 +33,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+    buildFeatures{
+        viewBinding = true
     }
 }
 
@@ -50,18 +54,25 @@ dependencies {
     //for playing online content
     implementation(libs.exoplayerDash)
     implementation(libs.androidx.fragment)
+    implementation(libs.cronet.embedded)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     // Fragment library
-    implementation ("androidx.fragment:fragment-ktx:1.6.0")
-    implementation ("com.github.bumptech.glide:glide:4.16.0")
+    implementation("androidx.fragment:fragment-ktx:1.6.0")
+    implementation("com.github.bumptech.glide:glide:4.16.0")
 
-    implementation ("com.google.code.gson:gson:2.8.8")
+    implementation("com.google.code.gson:gson:2.8.8")
 
-    implementation ("com.squareup.okhttp3:okhttp:4.9.3")
+    implementation("com.squareup.okhttp3:okhttp:4.9.3")
 
-    implementation ("androidx.lifecycle:lifecycle-extensions:2.2.0") // For older versions of LiveData
+//    implementation ("com.github.halilozercan:BetterVideoPlayer:2.0.0-alpha01")
+//    implementation ("com.github.halilozercan:BetterVideoPlayer:v1.1.0")
+//    implementation ("com.github.halilozercan:BetterVideoPlayer:1.1.0")
+
+//    implementation(project(mapOf("path" to ":bettervideoplayer")))
+
+    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0") // For older versions of LiveData
     // or
 //    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.7.1" )// For the latest versions with Kotlin extensions
 //    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.1") // For ViewModel
