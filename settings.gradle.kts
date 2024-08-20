@@ -10,6 +10,7 @@ pluginManagement {
         mavenCentral()
         gradlePluginPortal()
         jcenter()
+        maven(url = "https://jitpack.io")
     }
 }
 dependencyResolutionManagement {
@@ -18,8 +19,10 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         jcenter()
+        maven(url = "https://jitpack.io")
     }
 }
-
+//,":bettervideoplayer"
 rootProject.name = "IPTV"
 include(":app")
+//include(":bettervideoplayer")
