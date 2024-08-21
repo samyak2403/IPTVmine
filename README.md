@@ -3,7 +3,7 @@
 <img src="https://github.com/samyak2403/IPTVmine/blob/master/app/src/main/res/drawable/ic_tv.png" width="100px"/>
 
 ![pv](https://pageview.vercel.app/?github_user=IPTVmine)
-![GitHub Downloads (all assets, latest release)](https://img.shields.io/github/downloads-apk/samyak2403/IPTVmine/raw/master/app/release/app-release.apk)
+
 
 
 ## 📲 Download the APK:
