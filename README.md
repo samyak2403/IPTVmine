@@ -87,10 +87,15 @@ By working on this app, we aim to:
 - **Music**
 - **Kids**
 - **Regional**
-
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=samyak2403/Indian-IPTV-App-app&type=Date)](https://star-history.com/#samyak2403/Indian-IPTV-App-app&Date) 
+<a href="https://star-history.com/#samyak2403/Indian-IPTV-App-app&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=samyak2403/Indian-IPTV-App-app&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=samyak2403/Indian-IPTV-App-app&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=samyak2403/Indian-IPTV-App-app&type=Date" />
+ </picture>
+</a>
 
 ## Contributing
 We welcome contributions! Please follow the steps below to contribute:
