@@ -47,6 +47,14 @@ By working on this app, we aim to:
 <img src="5.png" width="450px"/>  |  
 
 
+## Disclaimer 📢
+
+- IPTV operates as a simple m3u streaming player.
+- Any issues regarding internet regulations should be addressed directly to the source website. The developer assumes no legal responsibility.
+
+## Credits
+
+[Channel Source](https://github.com/FunctionError/PiratesTv)
 
 ## Features
 - **500+ Indian TV Channels**: Enjoy a vast collection of channels from various genres.
@@ -96,6 +104,8 @@ By working on this app, we aim to:
    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=samyak2403/Indian-IPTV-App-app&type=Date" />
  </picture>
 </a>
+
+
 
 ## Contributing
 We welcome contributions! Please follow the steps below to contribute:
