@@ -35,8 +35,8 @@ By working on this app, we aim to:
 
 **TV Channels** | **Live**
 :-------------------------:|:-------------------------:
-<img src="1.png" width="250px"/>  |  <img src="2.png" width="250px"/> 
-<img src="3.png" width="250px"/>  |  <img src="4.png" width="250px"/>
+<img src="Image/1.png" width="250px"/>  |  <img src="Image/2.png" width="250px"/> 
+<img src="Image/3.png" width="250px"/>  |  <img src="Image/4.png" width="250px"/>
 
 **TV Channels** | **Live**
 :-------------------------:|:-------------------------:
