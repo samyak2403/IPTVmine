@@ -36,11 +36,11 @@ By working on this app, we aim to:
 **TV Channels** | **Live**
 :-------------------------:|:-------------------------:
 <img src="Image/1.png" width="250px"/>  |  <img src="Image/2.png" width="250px"/> 
-<img src="Image/3.png" width="250px"/>  |  <img src="Image/4.png" width="250px"/>
+<img src="Image/3.png" width="250px"/>  |  <img src="4.png" width="250px"/>
 
 **TV Channels** | **Live**
 :-------------------------:|:-------------------------:
-<img src="0.png" width="450px"/>  |  <img src="01.png" width="450px"/> 
+<img src="Image/4.png" width="450px"/>  |  <img src="Image/4.png" width="450px"/> 
 
 **TV Mode** | **Live**
 :-------------------------:|:-------------------------:
