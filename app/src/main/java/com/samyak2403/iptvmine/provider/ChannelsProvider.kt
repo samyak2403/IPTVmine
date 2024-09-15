@@ -3,15 +3,11 @@ package com.samyak2403.iptvmine.provider
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.samyak2403.iptvmine.model.Channel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import java.net.HttpURLConnection
 import java.net.URL
-
-
 
 class ChannelsProvider : ViewModel() {
 
@@ -21,65 +17,85 @@ class ChannelsProvider : ViewModel() {
     private val _filteredChannels = MutableLiveData<List<Channel>>()
     val filteredChannels: LiveData<List<Channel>> = _filteredChannels
 
+    private val _error = MutableLiveData<String?>()
+    val error: LiveData<String?> = _error
+
     private val sourceUrl = "https://raw.githubusercontent.com/FunctionError/PiratesTv/main/combined_playlist.m3u"
+
+    private var fetchJob: Job? = null
 
     // Fetch the M3U file from the provided URL
     fun fetchM3UFile() {
-        CoroutineScope(Dispatchers.IO).launch {
-            val url = URL(sourceUrl)
-            val urlConnection = url.openConnection() as HttpURLConnection
+        fetchJob?.cancel() // Cancel any ongoing fetch
+
+        fetchJob = viewModelScope.launch(Dispatchers.IO) {
             try {
-                val fileText = urlConnection.inputStream.bufferedReader().readText()
-                val lines = fileText.split("\n")
+                val urlConnection = (URL(sourceUrl).openConnection() as HttpURLConnection).apply {
+                    connectTimeout = 10000 // 10 seconds timeout
+                    readTimeout = 10000
+                }
 
-                val tempChannels = mutableListOf<Channel>()
+                urlConnection.inputStream.bufferedReader().use { reader ->
+                    val fileText = reader.readText()
+                    val tempChannels = parseM3UFile(fileText)
 
-                var name: String? = null
-                var logoUrl: String = getDefaultLogoUrl()
-                var streamUrl: String? = null
-
-                for (line in lines) {
-                    when {
-                        line.startsWith("#EXTINF:") -> {
-                            name = extractChannelName(line)
-                            logoUrl = extractLogoUrl(line) ?: getDefaultLogoUrl()
-                        }
-                        line.isNotEmpty() -> {
-                            streamUrl = line
-                            if (!name.isNullOrEmpty()) {
-                                tempChannels.add(
-                                    Channel(
-                                        name = name,
-                                        logoUrl = logoUrl,
-                                        streamUrl = streamUrl
-                                    )
-                                )
-                            }
-                            // Reset variables for the next channel
-                            name = null
-                            logoUrl = getDefaultLogoUrl()
-                            streamUrl = null
-                        }
+                    // Update LiveData on the main thread
+                    withContext(Dispatchers.Main) {
+                        _channels.value = tempChannels
+                        _error.value = null
                     }
                 }
-
-                // Update LiveData on the main thread
+            } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
-                    _channels.value = tempChannels
+                    _error.value = "Failed to fetch channels: ${e.message}"
                 }
-            } finally {
-                urlConnection.disconnect()
             }
         }
     }
 
+    // Parse M3U file content and return a list of Channel objects
+    private fun parseM3UFile(fileText: String): List<Channel> {
+        val lines = fileText.split("\n")
+        val tempChannels = mutableListOf<Channel>()
+
+        var name: String? = null
+        var logoUrl: String = getDefaultLogoUrl()
+        var streamUrl: String? = null
+
+        for (line in lines) {
+            when {
+                line.startsWith("#EXTINF:") -> {
+                    name = extractChannelName(line)
+                    logoUrl = extractLogoUrl(line) ?: getDefaultLogoUrl()
+                }
+                line.isNotEmpty() -> {
+                    streamUrl = line
+                    if (!name.isNullOrEmpty() && streamUrl != null) {
+                        tempChannels.add(
+                            Channel(
+                                name = name,
+                                logoUrl = logoUrl,
+                                streamUrl = streamUrl
+                            )
+                        )
+                    }
+                    // Reset variables for the next channel
+                    name = null
+                    logoUrl = getDefaultLogoUrl()
+                    streamUrl = null
+                }
+            }
+        }
+        return tempChannels
+    }
+
     private fun getDefaultLogoUrl(): String {
-        return "assets/images/tv-icon.png"
+        return "assets/images/ic_tv.png"
     }
 
     private fun extractChannelName(line: String): String? {
         val parts = line.split(",")
-        return parts.lastOrNull()
+        return parts.lastOrNull()?.trim()
     }
 
     private fun extractLogoUrl(line: String): String? {
@@ -95,11 +111,18 @@ class ChannelsProvider : ViewModel() {
         return url.startsWith("https") || url.startsWith("http")
     }
 
+    // Filter channels based on the user query
     fun filterChannels(query: String) {
-        val filtered = _channels.value?.filter {
-            it.name.contains(query, ignoreCase = true)
-        } ?: emptyList()
-        _filteredChannels.value = filtered
+        _channels.value?.let { channelList ->
+            val filtered = channelList.filter { it.name.contains(query, ignoreCase = true) }
+            _filteredChannels.value = filtered
+        }
+    }
+
+    // Cancel any ongoing fetch when ViewModel is cleared
+    override fun onCleared() {
+        super.onCleared()
+        fetchJob?.cancel()
     }
 }
 

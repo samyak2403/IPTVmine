@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -24,11 +25,13 @@ class HomeFragment : Fragment() {
 
     private lateinit var channelsProvider: ChannelsProvider
     private lateinit var searchEditText: EditText
+    private lateinit var searchIcon: ImageView
     private lateinit var progressBar: ProgressBar
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ChannelsAdapter
 
     private var debounceHandler: Handler? = null
+    private var isSearchVisible: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,6 +41,7 @@ class HomeFragment : Fragment() {
 
         channelsProvider = ViewModelProvider(this).get(ChannelsProvider::class.java)
         searchEditText = view.findViewById(R.id.searchEditText)
+        searchIcon = view.findViewById(R.id.search_icon)
         progressBar = view.findViewById(R.id.progressBar)
         recyclerView = view.findViewById(R.id.recyclerView)
 
@@ -50,6 +54,11 @@ class HomeFragment : Fragment() {
 
         setupObservers()
         fetchData()
+
+        // Set click listener to toggle the search bar visibility
+        searchIcon.setOnClickListener {
+            toggleSearchBar()
+        }
 
         searchEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -87,8 +96,17 @@ class HomeFragment : Fragment() {
     private fun filterChannels(query: String) {
         channelsProvider.filterChannels(query)
     }
-}
 
+    private fun toggleSearchBar() {
+        if (isSearchVisible) {
+            searchEditText.visibility = View.GONE
+            isSearchVisible = false
+        } else {
+            searchEditText.visibility = View.VISIBLE
+            isSearchVisible = true
+        }
+    }
+}
 
 
 

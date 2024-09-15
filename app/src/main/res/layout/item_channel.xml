@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?><!--
   ~ Created by Samyak kamble on 8/12/24, 10:22 AM
   ~  Copyright (c) 2024 . All rights reserved.
-  ~  Last modified 8/12/24, 10:22 AM
+  ~  Last modified 8/15/24, 07:02 PM
   -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -15,7 +15,7 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
 
-        android:src="@drawable/tv" />
+        android:src="@drawable/ic_tv" />
 
     <TextView
         android:id="@+id/nameTextView"

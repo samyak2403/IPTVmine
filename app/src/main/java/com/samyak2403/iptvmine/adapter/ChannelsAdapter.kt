@@ -49,7 +49,7 @@ class ChannelsAdapter(
             nameTextView.text = channel.name
             Glide.with(itemView.context)
                 .load(channel.logoUrl)
-                .placeholder(R.drawable.tv)
+                .placeholder(R.drawable.ic_tv)
                 .into(logoImageView)
 
             itemView.setOnClickListener {
