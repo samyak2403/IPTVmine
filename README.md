@@ -92,11 +92,11 @@ By working on this app, we aim to:
 - **Regional**
 ## Star History
 
-<a href="https://star-history.com/#samyak2403/Indian-IPTV-App-app&Date">
+<a href="https://star-history.com/#samyak2403/IPTVmine&Date">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=samyak2403/Indian-IPTV-App-app&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=samyak2403/Indian-IPTV-App-app&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=samyak2403/Indian-IPTV-App-app&type=Date" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=samyak2403/IPTVmine&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=samyak2403/IPTVmine&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=samyak2403/IPTVmine&type=Date" />
  </picture>
 </a>
 
